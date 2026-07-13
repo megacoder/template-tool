@@ -1,2 +1,2 @@
-# template-tool
-Yet another vim(1) templating tool.  Requires vim(1) with python support ( $ vim --version | grep -i python" )
+# Template Tool for Vim
+A fast, lightweight file templating system built natively using Vim's Python 3 interface.
