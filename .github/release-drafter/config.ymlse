@@ -1,0 +1,7 @@
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: 'New Features'
+    labels: ['feature', 'enhancement']
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+template: "## Changes Tracker\n\n$CHANGES"

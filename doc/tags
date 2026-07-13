@@ -1,7 +1,7 @@
-templates-tool	templates-tool.txt	/*templates-tool*
-templates-tool-auto	templates-tool.txt	/*templates-tool-auto*
-templates-tool-hotkey	templates-tool.txt	/*templates-tool-hotkey*
-templates-tool-nesting	templates-tool.txt	/*templates-tool-nesting*
-templates-tool-paths	templates-tool.txt	/*templates-tool-paths*
-templates-tool-status	templates-tool.txt	/*templates-tool-status*
-templates-tool.txt	templates-tool.txt	/*templates-tool.txt*
+template-tool	template-tool.txt	/*template-tool*
+template-tool-auto	template-tool.txt	/*template-tool-auto*
+template-tool-hotkey	template-tool.txt	/*template-tool-hotkey*
+template-tool-nesting	template-tool.txt	/*template-tool-nesting*
+template-tool-paths	template-tool.txt	/*template-tool-paths*
+template-tool-status	template-tool.txt	/*template-tool-status*
+template-tool.txt	template-tool.txt	/*template-tool.txt*

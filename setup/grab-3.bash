@@ -1,0 +1,128 @@
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/.github/workflows/lint.yml
+name: Lint Vimscript
+on: [push, pull_request]
+jobs:
+  vint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: |
+          pip install vim-vint
+          vint plugin/
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/.github/release-drafter/config.yml
+name-template: 'v$RESOLVED_VERSION'
+tag-template: 'v$RESOLVED_VERSION'
+categories:
+  - title: 'New Features'
+    labels: ['feature', 'enhancement']
+change-template: '- $TITLE (#$NUMBER) @$AUTHOR'
+template: "## Changes Tracker\n\n$CHANGES"
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/.github/workflows/release.yml
+name: Release Manager
+on:
+  push:
+    branches: [main, master]
+permissions:
+  contents: write
+  pull-requests: read
+jobs:
+  update_release_draft:
+    permissions:
+      contents: write
+      pull-requests: write
+    runs-on: ubuntu-latest
+    steps:
+      - uses: release-drafter/release-drafter@v6
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/.github/issue_template/bug_report.md
+---
+name: "Bug Report"
+about: Report a rendering engine bug or layout calculation problem
+title: "[BUG]: "
+labels: ["bug"]
+---
+### Environment Details
+* Vim Version:
+* OS:
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/.github/issue_template/feature_request.md
+---
+name: "Feature Request"
+about: Suggest a new macro variable, trigger mechanism, or structural enhancement
+title: "[FEATURE]: "
+labels: ["enhancement"]
+---
+### Describe the Solution You'd Like
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/.github/pull_request_template.md
+## Description
+Summary of the changes.
+## Checklist
+- My code passes automated syntax checks (vint).
+EOF
+
+cat << 'EOF' > ~/.vim/template/Makefile
+# ============================================================================
+# Project: Makefile Layout Blueprint
+# ============================================================================
+CC       := gcc
+CFLAGS   := -Wall -Wextra -O2 -std=c11
+TARGET   := app
+.PHONY: all clean
+all: $(TARGET)
+$(TARGET): main.o
+	$(CC) $(CFLAGS) $^ -o $@
+clean:
+	rm -f *.o $(TARGET)
+EOF
+
+cat << 'EOF' > ~/.vim/template/%.c
+/*
+ * File:        <[filename]>
+ * Author:      <[user]>
+ * Date:        <[date]>
+ */
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char *argv[]) {
+    printf("[System Initialized]: Running <[filename]>\n");
+    <[CURSOR]>
+    return EXIT_SUCCESS;
+}
+EOF
+
+cat << 'EOF' > ~/.vim/template/%.py
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+File:        <[filename]>
+Author:      <[user]>
+Created:     <[date]>
+"""
+import sys
+def main():
+    <[CURSOR]>
+    pass
+if __name__ == "__main__":
+    main()
+EOF
+
+cat << 'EOF' > ~/.vim/template/%.py.weather
+# [Local Weather Environment State Data Fetch]
+# Current Conditions: <[weather_live]>
+EOF
+
+vim -u NONE -c "helptags ~/.vim/pack/plugins/start/template-tool/doc/" -c "q"
+echo "Part 3 Complete! Run :TemplatesToolStatus inside Vim to verify."

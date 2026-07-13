@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+PLUGIN_DIR="${HOME}/.vim/pack/plugins/start/templates-tool"
+TEMPLATES_DIR="${HOME}/.vim/templates"
+read -p "Uninstall templates-tool plugin? (y/N): " -r confirm
+if [[ "$confirm" =~ ^[Yy]$ ]] && [ -d "$PLUGIN_DIR" ]; then
+    rm -rf "$PLUGIN_DIR"
+    echo "Plugin code removed."
+fi

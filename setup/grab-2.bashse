@@ -1,0 +1,73 @@
+cat << 'EOF' > ~/.vim/pack/plugins/start/templates-tool/doc/templates-tool.txt
+*templates-tool.txt*  A Python-backed template engine with dynamic nesting support.
+==============================================================================
+TEMPLATES-TOOL MANUAL                                         *templates-tool*
+An automated templating engine leveraging the +python3 interface for fast,
+clean variable evaluation and macro expansions.
+                                CONTENTS |templates-tool-contents|
+        1. Setup & Layout...................|templates-tool-paths|
+        2. Automatic Buffers................|templates-tool-auto|
+        3. Hotkey Header Macro..............|templates-tool-hotkey|
+        4. Dynamic Custom Nesting...........|templates-tool-nesting|
+==============================================================================
+1. SETUP & LAYOUT                                       *templates-tool-paths*
+All skeleton layout configuration templates are evaluated directly out of:
+   ~/.vim/templates/
+Priority fallback check rules match exact filenames, then generic extensions:
+1. templates/filename.ext (e.g. main.c)
+2. templates/%.ext (e.g. %.c)
+==============================================================================
+2. AUTOMATIC BUFFERS                                     *templates-tool-auto*
+When opening a matching clean file layout workspace, these variables resolve:
+   <[user]>        Active system user environment identification string
+   <[date]>        Current operational timestamp (YYYY-MM-DD HH:MM:SS)
+   <[filename]>    Name of the current working file target
+   <[CURSOR]>      Sets the precise cursor position and boots Insert mode
+==============================================================================
+2.1 DIAGNOSTICS INSPECTOR                              *templates-tool-status*
+To quickly verify configuration mapping arrays, run the diagnostic dashboard:
+   :TemplatesToolStatus
+==============================================================================
+3. HOTKEY HEADER MACRO                                 *templates-tool-hotkey*
+Normal mode: Pressing <ALT-h> replaces the active line with a multi-line
+comment box layout, matching structural nested leading tabs or spaces natively.
+==============================================================================
+4. DYNAMIC CUSTOM NESTING                             *templates-tool-nesting*
+Insert Mode: Typing custom macros pulls fragments dynamically out of
+~/.vim/templates/%.ext.custom files, resolving nesting variables.
+==============================================================================
+vim:tw=78:ts=8:ft=help:norl:
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/templates-tool/README.md
+# Templates Tool for Vim
+A fast, lightweight file templating system built natively using Vim's Python 3 interface.
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/templates-tool/install.sh
+#!/usr/bin/env bash
+set -euo pipefail
+TARGET_PLUGIN_DIR="${HOME}/.vim/pack/plugins/start/templates-tool"
+TARGET_TEMPLATES_DIR="${HOME}/.vim/templates"
+mkdir -p "$TARGET_PLUGIN_DIR" "$TARGET_TEMPLATES_DIR"
+if [ -d "doc" ] && command -v vim &> /dev/null; then
+    vim -u NONE -c "helptags doc/" -c "q"
+fi
+echo "Setup complete! Workspace ready inside $TARGET_TEMPLATES_DIR"
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/templates-tool/uninstall.sh
+#!/usr/bin/env bash
+set -euo pipefail
+PLUGIN_DIR="${HOME}/.vim/pack/plugins/start/templates-tool"
+TEMPLATES_DIR="${HOME}/.vim/templates"
+read -p "Uninstall templates-tool plugin? (y/N): " -r confirm
+if [[ "$confirm" =~ ^[Yy]$ ]] && [ -d "$PLUGIN_DIR" ]; then
+    rm -rf "$PLUGIN_DIR"
+    echo "Plugin code removed."
+fi
+EOF
+
+chmod +x ~/.vim/pack/plugins/start/templates-tool/install.sh
+chmod +x ~/.vim/pack/plugins/start/templates-tool/uninstall.sh
+echo "Part 2 successfully written!"

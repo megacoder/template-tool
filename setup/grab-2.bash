@@ -1,3 +1,4 @@
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/doc/template-tool.txt
 *template-tool.txt*  A Python-backed template engine with dynamic nesting support.
 ==============================================================================
 TEMPLATES-TOOL MANUAL                                         *template-tool*
@@ -36,3 +37,37 @@ Insert Mode: Typing custom macros pulls fragments dynamically out of
 ~/.vim/template/%.ext.custom files, resolving nesting variables.
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/README.md
+# Templates Tool for Vim
+A fast, lightweight file templating system built natively using Vim's Python 3 interface.
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/install.sh
+#!/usr/bin/env bash
+set -euo pipefail
+TARGET_PLUGIN_DIR="${HOME}/.vim/pack/plugins/start/template-tool"
+TARGET_TEMPLATES_DIR="${HOME}/.vim/template"
+mkdir -p "$TARGET_PLUGIN_DIR" "$TARGET_TEMPLATES_DIR"
+if [ -d "doc" ] && command -v vim &> /dev/null; then
+    vim -u NONE -c "helptags doc/" -c "q"
+fi
+echo "Setup complete! Workspace ready inside $TARGET_TEMPLATES_DIR"
+EOF
+
+cat << 'EOF' > ~/.vim/pack/plugins/start/template-tool/uninstall.sh
+#!/usr/bin/env bash
+set -euo pipefail
+PLUGIN_DIR="${HOME}/.vim/pack/plugins/start/template-tool"
+TEMPLATES_DIR="${HOME}/.vim/template"
+read -p "Uninstall template-tool plugin? (y/N): " -r confirm
+if [[ "$confirm" =~ ^[Yy]$ ]] && [ -d "$PLUGIN_DIR" ]; then
+    rm -rf "$PLUGIN_DIR"
+    echo "Plugin code removed."
+fi
+EOF
+
+chmod +x ~/.vim/pack/plugins/start/template-tool/install.sh
+chmod +x ~/.vim/pack/plugins/start/template-tool/uninstall.sh
+echo "Part 2 successfully written!"

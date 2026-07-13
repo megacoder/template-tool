@@ -1,38 +1,38 @@
-*template-tool.txt*  A Python-backed template engine with dynamic nesting support.
+*templates-tool.txt*  A Python-backed template engine with dynamic nesting support.
 ==============================================================================
-TEMPLATES-TOOL MANUAL                                         *template-tool*
+TEMPLATES-TOOL MANUAL                                         *templates-tool*
 An automated templating engine leveraging the +python3 interface for fast,
 clean variable evaluation and macro expansions.
-                                CONTENTS |template-tool-contents|
-        1. Setup & Layout...................|template-tool-paths|
-        2. Automatic Buffers................|template-tool-auto|
-        3. Hotkey Header Macro..............|template-tool-hotkey|
-        4. Dynamic Custom Nesting...........|template-tool-nesting|
+                                CONTENTS |templates-tool-contents|
+        1. Setup & Layout...................|templates-tool-paths|
+        2. Automatic Buffers................|templates-tool-auto|
+        3. Hotkey Header Macro..............|templates-tool-hotkey|
+        4. Dynamic Custom Nesting...........|templates-tool-nesting|
 ==============================================================================
-1. SETUP & LAYOUT                                       *template-tool-paths*
-All skeleton layout configuration template are evaluated directly out of:
-   ~/.vim/template/
+1. SETUP & LAYOUT                                       *templates-tool-paths*
+All skeleton layout configuration templates are evaluated directly out of:
+   ~/.vim/templates/
 Priority fallback check rules match exact filenames, then generic extensions:
-1. template/filename.ext (e.g. main.c)
-2. template/%.ext (e.g. %.c)
+1. templates/filename.ext (e.g. main.c)
+2. templates/%.ext (e.g. %.c)
 ==============================================================================
-2. AUTOMATIC BUFFERS                                     *template-tool-auto*
+2. AUTOMATIC BUFFERS                                     *templates-tool-auto*
 When opening a matching clean file layout workspace, these variables resolve:
    <[user]>        Active system user environment identification string
    <[date]>        Current operational timestamp (YYYY-MM-DD HH:MM:SS)
    <[filename]>    Name of the current working file target
    <[CURSOR]>      Sets the precise cursor position and boots Insert mode
 ==============================================================================
-2.1 DIAGNOSTICS INSPECTOR                              *template-tool-status*
+2.1 DIAGNOSTICS INSPECTOR                              *templates-tool-status*
 To quickly verify configuration mapping arrays, run the diagnostic dashboard:
    :TemplatesToolStatus
 ==============================================================================
-3. HOTKEY HEADER MACRO                                 *template-tool-hotkey*
+3. HOTKEY HEADER MACRO                                 *templates-tool-hotkey*
 Normal mode: Pressing <ALT-h> replaces the active line with a multi-line
 comment box layout, matching structural nested leading tabs or spaces natively.
 ==============================================================================
-4. DYNAMIC CUSTOM NESTING                             *template-tool-nesting*
+4. DYNAMIC CUSTOM NESTING                             *templates-tool-nesting*
 Insert Mode: Typing custom macros pulls fragments dynamically out of
-~/.vim/template/%.ext.custom files, resolving nesting variables.
+~/.vim/templates/%.ext.custom files, resolving nesting variables.
 ==============================================================================
 vim:tw=78:ts=8:ft=help:norl:
