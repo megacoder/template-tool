@@ -13,8 +13,8 @@ let g:loaded_template_tool = 1
 
 " --- Section 1: Template Auto-loading Hooks ---
 function! s:LoadTemplate()
-    if line('$') > 1 || getline(1) != '' || &buftype != ''
-        return
+	if line('$') > 1 || getline(1) != '' || &buftype != ''
+		return
     endif
     python3 << EOP
 import vim
